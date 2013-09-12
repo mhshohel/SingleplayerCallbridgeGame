@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<!--
+/**
+*  Author: Shohel Shamim
+*  Release Date: 05-08-2012
+*  Linnaeus University, Växjö, Sweden
+*/
+-->
+<html lang="en">
+    <head>
+        <title>Call Bridge - Card Game</title>
+        <meta charset="utf-8" />
+        <meta name="description" content="" />
+        <meta name="author" content="Shohel Shamim" />
+        <link rel="shortcut icon" href="cards/icon.ico" />
+        <link rel="apple-touch-icon" href="cards/icon.png" />
+        <link rel="stylesheet" href="style/style.css" />
+        <link rel="stylesheet" href="style/table.css" />
+    </head>
+    <body>
+        <div>
+            <nav id = "nav_buttons">
+                <button id="newGameButton" value="New Game" class="bid_button_background" title="Click to start new game.">
+                    New Game
+                </button>
+                <button id="dealButton" value="Deal" class="bid_button_background" title="Clicke to deal cards.">
+                    Deal
+                </button>
+                <button id="quitButton" value="Quit Game" class="bid_button_background" title="Clicke to quit the game.">
+                    Quit Game
+                </button>
+                <button id="lastFiveGames" value="History" class="bid_button_background" title="Show last 5 games result.">
+                    History
+                </button>
+                <button id="restart_button" value="Restart Game" class="bid_button_background" title="Pardon, If any problem with the table click me, I will fix the issue for you, until the next upgrade.">
+                    Restart Game
+                </button>
+                <p style="display: inline; position: fixed; right: 5px; top: -15px; font-size: 0.8em;">
+                    v.1.5
+                </p>
+            </nav>
+            <div id="container">
+                <div id="top">
+                    <div id="top-left" class="top_left_middle_right">
+                        <img id="left_player" title="Unknown Cards" src="cards/hit_small.jpg" style="max-width: 150px; margin: 25px 0px 0px 10px; display: none;" />
+                        <h5 id="left_player_text_name" class="textBlockLeft"></h5>
+                        <h5 id="left_player_text_sideoff" style="display: none; color: red;" class="textBlockLeft">SideOff</h5>
+                    </div>
+                    <div id="top-middle" class="top_left_middle_right">
+                        <img id="middle_player" title="Unknown Cards" src="cards/hit_small.jpg" style="max-width: 150px; margin: 0px 0px 0px 90px; display: none;" />
+                        <h5 id="middle_player_text_name" class="textBlockMiddle"></h5>
+                        <h5 id="middle_player_text_sideoff" style="display: none; color: red;" class="textBlockMiddle">SideOff</h5>
+                    </div>
+                    <div id="top-right" class="top_left_middle_right">
+                        <img id="right_player" title="Unknown Cards" src="cards/hit_small.jpg" style="max-width: 150px; margin: 25px 0px 0px 150px; display: none;" />
+                        <h5 id="right_player_text_name" class="textBlockRight"></h5>
+                        <h5 id="right_player_text_sideoff" style="display: none; color: red;" class="textBlockRight">SideOff</h5>
+                    </div>
+                </div>
+                <div id="middle">
+                    <div id="middle_cards">
+                        <img id="human_card" class="imageSizeForMiddle"  style="right: 42%; bottom: 1%;"/>
+                        <img id="right_card" class="imageSizeForMiddle"   style="right: 35%; top: 16%;" />
+                        <img id="middle_card" class="imageSizeForMiddle"  style="right: 42%; top: 1%;" />
+                        <img id="left_card" class="imageSizeForMiddle"  style="right: 49%; top: 16%;" />
+                    </div>
+                </div>
+                <div id="buttom" class="cards">
+
+                </div>
+
+                <div class="status">
+                    <h1 id="game_title_with_tbl_name">Game Score</h1>
+                    <h3 id="max_poins_title">Max Game Points: 50</h3>
+                    <table id="gamestatus" summary="Call Bridge Game Score">
+                        <thead>
+                            <tr>
+                                <th>Players</th>
+                                <th>Current Bid</th>
+                                <th>Current Score</th>
+                                <th>Total Score</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th id="human_table_head"><img id="human_img" src="icons/1.png"/>
+                                <br />
+                                <span id="name_of_human">Human</span></th>
+                                <td id="curr_bid_human">-</td>
+                                <td id="curr_score_human">-</td>
+                                <td id="curr_tscore_human">-</td>
+                            </tr>
+                            <tr>
+                                <th id="right_table_head"><img id="right_img" src="icons/1.png"/>
+                                <br />
+                                <span id="name_of_right">Right</span></th>
+                                <td id="curr_bid_right">-</td>
+                                <td id="curr_score_right">-</td>
+                                <td id="curr_tscore_right">-</td>
+                            </tr>
+                            <tr>
+                                <th id="middle_table_head"><img id="middle_img" src="icons/1.png"/>
+                                <br />
+                                <span id="name_of_middle">Middle</span></th>
+                                <td id="curr_bid_middle">-</td>
+                                <td id="curr_score_middle">-</td>
+                                <td id="curr_tscore_middle">-</td>
+                            </tr>
+                            <tr>
+                                <th id="left_table_head"><img id="left_img" src="icons/1.png"/>
+                                <br />
+                                <span id="name_of_left">Left</span></th>
+                                <td id="curr_bid_left">-</td>
+                                <td id="curr_score_left">-</td>
+                                <td id="curr_tscore_left">-</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td id="footer_current_total" colspan="4" class="rounded-foot-human_table_head" style="display: none;"><em>Current Total Score: </em></td>
+                            </tr>
+                            <tr>
+                                <td id="footer_current_player_name" colspan="4" class="rounded-foot-human_table_head" style="display: none;"><em>Waiting for : </em></td>
+                            </tr>
+                            <tr>
+                                <td id="footer_human_player_warning" colspan="4" class="rounded-foot-human_table_head" style="display: none; color: red;"><em>You can't play : </em></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+            <div id="settings">
+                <h1 style="font-style:italic;">Game Settings</h1>
+                <p id="table_title">
+                    Table Name:
+                    <input id="table_title_tx" value="Table Title" type="text" placeholder="Enter name of the table" maxlength="20" size="25"/>
+                </p>
+                <p id="player_name">
+                    Player's Name:
+                    <br/>
+                    <input id="human_player_name" type="text" title="Enter Your Name" placeholder="Enter your name" value="Human" maxlength="15" size="17" />
+                    <input id="left_player_name" type="text" title="Enter left player name" placeholder="Enter left player name" value="Left" maxlength="15" size="17" />
+                    <input id="middle_player_name" type="text" title="Enter middle player name" placeholder="Enter middle player name" value="Middle" maxlength="15" size="17" />
+                    <input id="right_player_name" type="text" title="Enter right player name" placeholder="Enter right player name" value="Right" maxlength="15" size="17" />
+                </p>
+                <p id="sideoff">
+                    Let me know if anyone has Side off:
+                    <input id="sideoff_rd_1" name="sideoff_rd" type="radio" value="on" title="Side off on" checked="checked" />
+                    On
+                    <input id="sideoff_rd_2" name="sideoff_rd" type="radio" value="off" title="Side off off" />
+                    Off
+                </p>
+                <p id="spades">
+                    Must have Spade:
+                    <input id="spades_rd_1" name="spades_rd" type="radio" value="on" title="Must have Spades" checked="checked" />
+                    On
+                    <input id="spades_rd_2" name="spades_rd" type="radio" value="off" title="Not important to have Spades" />
+                    Off
+                </p>
+                <p id="spade_first">
+                    Can not play Spade first:
+                    <input id="spade_first_rd_1" name="spade_first_rd" type="radio" value="on" title="Can not play Spade first" checked="checked" />
+                    On
+                    <input id="spade_first_rd_2" name="spade_first_rd" type="radio" value="off" title="Can play Spade first" />
+                    Off
+                </p>
+                <p id="honors">
+                    Must have honors (Jack/Queen/King/Ace) card:
+                    <input id="honors_rd_1" name="honors_rd" type="radio" value="on" title="Must have honors card" checked="checked" />
+                    On
+                    <input id="honors_rd_2" name="honors_rd" type="radio" value="off" title="Can play without honors card" />
+                    Off
+                </p>
+                <p id="min_bid">
+                    Minimum bidding points:
+                    <select id="min_bid_sl">
+                        <option selected="selected">1</option>
+                        <option>2</option>
+                        <option>3</option>
+                    </select>
+                </p>
+                <p id="min_t_bid">
+                    Minimum total bidding points:
+                    <select id="min_t_bid_sl">
+                        <option selected="selected">8</option>
+                        <option>9</option>
+                        <option>10</option>
+                        <option>11</option>
+                        <option>12</option>
+                    </select>
+                </p>
+                <p id="points_cut">
+                    Points will cut if you get extra
+                    <select id="points_cut_sl">
+                        <option>1</option>
+                        <option selected="selected">2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                    hands.
+                </p>
+                <p id="points_cut_extra">
+                    If extra hands matched, points will cut by
+                    <br/>
+                    <input id="points_cut_extra_1" name="points_cut_extra_rd" type="radio" value="none" title="No points cut" checked="checked" />
+                    None
+                    <input id="points_cut_extra_2" name="points_cut_extra_rd" type="radio" value="extra" title="Deduct only extra points"/>
+                    Only Extra
+                    <input id="points_cut_extra_3" name="points_cut_extra_rd" type="radio" value="double" title="Deduct double of extra points" />
+                    Double of Extra
+                    <input id="points_cut_extra_4" name="points_cut_extra_rd" type="radio" value="original" title="Deduct original bidding points" />
+                    Original Bid
+                </p>
+                <p id="bonus">
+                    Get bonus 13 points, if you bid 8 and get 8:
+                    <input id="bonus_rd_1" name="binus_rd" type="radio" value="on" title="Bonus on" checked="checked" />
+                    On
+                    <input id="bonus_rd_2" name="bonus_rd" type="radio" value="off" title="Bonus off" />
+                    Off
+                </p>
+                <p id="max_game_point">
+                    Maximum Game Points:
+                    <select id="max_game_point_sl">
+                        <option>25</option>
+                        <option selected="selected">50</option>
+                        <option>75</option>
+                        <option >100</option>
+                    </select>
+                </p>
+                <p id="save">
+                    <input id="game_setting_button" class="game_setting_background" type="button" value="Save Game Setting" title="Save game settings" autofocus="autofocus" />
+                </p>
+            </div>
+            <div id="game_bid_menu" title="Select your bid carefully, you cannot change bid in the middle of the game.">
+                <p id="bid_popup">
+                    Select your bid:
+                    <select id="bid_popup_sl">
+
+                    </select>
+
+                    <input id="bid_popup_save" class="bid_button_background" type="button" value="Save" title="Save" name="Save" autofocus="autofocus"/>
+                </p>
+            </div>
+        </div>
+        <div id="winner_Message" title="Winner Message" style="position: relative; border: 1px  solid black; background: #008000; margin: 5px 5px 5px 5px; padding: 5px 5px 5px 5px; display: none; text-align: center;">
+            <p id="winner_popup">
+
+            </p>
+        </div>
+        <div id="support_Message" title="Support Message" style="position: relative; border: 1px  solid black; background: #2B81AF; margin: 5px 5px 5px 5px; padding: 5px 5px 5px 5px; display: none">
+            <p id="supprot_popup" style="color: white;">
+                Your browser is not compitable for Call Bridge Game. Please Update Your Browser.
+                <br/>
+                Thanks
+            </p>
+        </div>
+        <div class="history_div" id="history_div_id">
+            <h2 title="Last 5 Game's Final Result...">Last 5 Game's Final Result...</h2>
+            <table id="history_table" width="100%;">
+                <thead id="history_head">
+                    <tr>
+                        <th title="Date and Time of Saved Game" rowspan="2" width="15%">Date
+                        <br />
+                        Time</th>
+                        <th title="Table Name" rowspan="2" width="20%">Table Name</th>
+                        <th title="Player's Name and Score" colspan="4" width="65%">Player's Name and Score</th>
+                    </tr>
+                    <tr>
+                        <th title="Human's Name and Score" width="16.25%">Human</th>
+                        <th title="Right's Name and Score" width="16.25%">Right</th>
+                        <th title="Middle's Name and Score" width="16.25%">Middle</th>
+                        <th title="Left's Name and Score" width="16.25%">Left</th>
+                    </tr>
+                </thead>
+                <tbody id="history_body">
+
+                </tbody>
+            </table>
+            <nav>
+                <input type="button" value="Close History" id="close_history" title="Close History" class="bid_button_background"/>
+                <input type="button" value="Clear History" id="clear_history" title="Clear History" class="bid_button_background"/>
+            </nav>
+        </div>
+
+        <script src="script/jquery-1.7.2.js"></script>
+        <script src="script/script.js"></script>
+    </body>
+</html>

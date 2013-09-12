@@ -1,0 +1,118 @@
+/**
+ *  Author: Shohel Shamim
+ *  Release Date: 05-08-2012
+ *  Linnaeus University, Växjö, Sweden
+ */
+body {
+    font-size: 100%;
+    font-family: 'Courier New', Times, serif;
+}
+div #container {
+    width: 100%;
+    display: none;
+}
+div #container > div {
+    border: none;
+}
+div #top {
+    position: relative;
+    float: left;
+    width: 68%;
+    height: 200px;
+}
+div #middle {
+    position: relative;
+    float: left;
+    width: 68%;
+    height: 250px;
+}
+div #buttom {
+    position: relative;
+    float: left;
+    width: 68%;
+    height: 180px;
+}
+.status {
+    border: 1px double black;
+    background: white;
+    position: absolute;
+    float: left;
+    left: 68%;
+    width: 30%;
+}
+.status #game_title_with_tbl_name, #max_poins_title {
+    margin: 2px;
+    color: #006600;
+    background: #E0F2BE;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -o-border-radius: 10px;
+    font-style: italic;
+    text-align: center;
+}
+.top_left_middle_right {
+    position: relative;
+    float: left;
+    width: 33%;
+}
+.imageSize {
+    position: absolute;
+    clip: rect(7px 158px 234px 8px);
+    max-width: 120px;
+    right: 0px;
+    display: none;
+}
+.imageSizeForMiddle {
+    position: absolute;
+    clip: rect(7px 115px 170px 5px);
+    max-width: 120px;
+    right: 0px;
+    display: none;
+}
+.textBlockLeft {
+    margin: auto;
+    padding-left: 20px;
+}
+.textBlockMiddle {
+    margin: auto;
+    padding-left: 100px;
+}
+.textBlockRight {
+    margin: auto;
+    padding-left: 160px;
+}
+#settings {
+    position: absolute;
+    background: #FCEFA1;
+    left: 25%;
+    padding: 20px;
+    width: 45%;
+    display: none;
+    border: 2px solid #000;
+}
+#game_bid_menu {
+    position: absolute;
+    background: #E0F2BE;
+    left: 20%;
+    top: 300px;
+    padding: 20px;
+    width: 22%;
+    display: none;
+    border: 2px solid #000;
+}
+.game_setting_background {
+    background: #FCEFA1;
+}
+.bid_button_background {
+    background: #E0F2BE;
+}
+.winner {
+    font-size: 2em;
+    color: white;
+}
+.cards {
+    position: relative;
+    overflow: hidden;
+    float: left;
+}
